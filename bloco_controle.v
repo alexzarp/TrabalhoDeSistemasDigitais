@@ -17,7 +17,8 @@ module boco_controle(
 
 assign h = state == 1 ? 1 : state == 2 ? 1 : state == 3 ? 1 : 0;
 assign Reg_H = state == 2 ? 1 : state == 4 ? 0;
-assign Reg_S = state 
+assign Reg_S = state == 4 ? 1 : state == 5 ? 1 : state == 6 ? 1 : 0;
+assign Reg_X = state == 1 ? 1 : 0;
 assign m0 = state == 1 ? 0 : state == 2 ? 1 : state == 3 ? 2 : state == 4 ? 0 : 3;
 assign m1 = 
 
