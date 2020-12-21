@@ -20,7 +20,9 @@ assign Reg_H = state == 2 ? 1 : state == 4 ? 0;
 assign Reg_S = state == 4 ? 1 : state == 5 ? 1 : state == 6 ? 1 : 0;
 assign Reg_X = state == 1 ? 1 : 0;
 assign m0 = state == 1 ? 0 : state == 2 ? 1 : state == 3 ? 2 : state == 4 ? 0 : 3;
-assign m1 = 
+assign m1 = state == 1 ? 1 : state == 2 ? 0 : state == 3 ? 0 : state == 4 ? 3 : 0;
+assign m2 = state == 1 ? 0 : state == 2 ? 3 : state == 3 ? 0 : start == 4 ? 2 : state == 5 ? 2 : 0;
+assign start = state == 1 ? 1 : 0;
 
     always @(posedge clock or reset)
     begin
