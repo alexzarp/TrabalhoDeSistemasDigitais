@@ -1,3 +1,5 @@
+`include "yankeeSolver.v"
+
 module testbench;
 
 reg signed [7:0] x;

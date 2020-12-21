@@ -1,4 +1,4 @@
-module boco_controle(
+module bloco_controle(
     input clock,
           start,
           reset,

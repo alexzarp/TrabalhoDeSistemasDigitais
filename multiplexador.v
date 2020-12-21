@@ -1,6 +1,6 @@
 // Multiplexador controlador 4x1
 
-module mux(
+module multiplexador(
     input signed [15:0] zero_zero,
                         zero_um,
                         um_zero,
