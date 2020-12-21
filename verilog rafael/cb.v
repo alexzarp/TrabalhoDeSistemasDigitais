@@ -37,7 +37,7 @@ end
 always @(posedge clock)
 begin
     // vergonha dessa parte do código, talvez depois eu volte nisso e corrija
-    if(state > 8)
+    if(state == 9)
         state = 0;
 
     else if(state != 0 || (state == 0 && start))

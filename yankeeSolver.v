@@ -1,4 +1,5 @@
-`include "multiplexador.v"
+`include "bloco_operativo.v",
+`include "bloco_controle.v"
 
 module yankeeSolver (
     input clock,
@@ -8,46 +9,13 @@ module yankeeSolver (
     input signed [15:0] a,
     input signed [15:0] b,
     input signed [15:0] c,
-    input enable,
-    input reset,
     output signed [15:0] result,
 
     output ready,
     output valid
 );
 
-reg signed [15:0] Reg_S, //registrador da soma
-                  Reg_H, //registrador da multiplicação
-                  Reg_X; //registrador que contém o X
-
-assign result = Reg_S;
-
-reg [3:0] state;
-
-wire signed [15:0] saida_m0,
-                   saida_m1,
-                   saida_m2,
-                   saida_ula;
-
-reg [15:0] temp;
-
-assign valid = state == 15;
-assign ready = state == 0;
-
-assign result = a * x * x + b * x + c;
-
-always @(posedge clock or reset)
-begin
-    if (reset) begin
-        state <= 0;
-    end
-    else begin
-        if (state == 0 && ~enable)
-            state <= state;
-        else 
-            state <= state + 1;
-    end
-end
-
+bloco_controle bloco_controle1(clock, start, reset, valid, ready, h, Reg_X, Reg_H, Reg_S, m0, m1, m2);
+bloco_operativo bloco_operativo1(clock, a, b, c, x, h, Reg_X, Reg_H);
 
 endmodule

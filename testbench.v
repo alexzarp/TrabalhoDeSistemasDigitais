@@ -13,7 +13,7 @@ wire valid, ready;
 
 
 /* este modulo eh falso, precisa substituir pelo trabalho final */
-fake fake1(clock, x, a, b, c, enable, reset, y, ready, valid);
+yankeeSolver yankeeSolver1(clock, x, a, b, c, enable, reset, y, ready, valid);
 
 always #1 clock <= ~clock;
 
