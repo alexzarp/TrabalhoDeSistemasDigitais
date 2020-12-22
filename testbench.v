@@ -1,6 +1,7 @@
 `include "yankeeSolver.v"
 
 module testbench;
+reg [31:0] counter = 0;
 
 reg signed [7:0] x;
 reg signed [15:0] a;
@@ -15,7 +16,7 @@ wire valid, ready;
 
 
 /* este modulo eh falso, precisa substituir pelo trabalho final */
-yankeeSolver yankeeSolver1(clock, x, a, b, c, enable, reset, y, ready, valid);
+yankeeSolver yankeeSolver1(clock, enable, reset, x, a, b, c, y, ready, valid);
 
 always #1 clock <= ~clock;
 
@@ -43,6 +44,11 @@ always @(posedge valid) begin
     if (expected !== y) begin
         $display("Erro: esperava %d, recebi %d.", expected, y);
         $finish;
+    end
+    else
+    begin
+        $display("Verificacao no. %d correta.", counter);
+        counter = counter + 1;
     end
 end
 
