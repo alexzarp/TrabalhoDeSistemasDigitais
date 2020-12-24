@@ -40,7 +40,6 @@ begin
     if (LH)
         Reg_H <= saida_ula;
 
-    $display("regX %d, regS %d, regH %d", Reg_X, Reg_S, Reg_H);
 end
 
 ula ula1(h, clock, saida_m2, saida_m1, saida_ula);

@@ -17,15 +17,15 @@ module bloco_controle(
 
 reg [2:0] state;
 
-assign h = state == 1 ? 1 : state == 2 ? 1 : state == 3 ? 1 : 0;
-assign LH = state == 4 ? 0 : 1;
-assign LS = 1;
-assign LX = state == 1 ? 1 : 0;
-assign m0 = state == 1 ? 0 : state == 2 ? 1 : state == 3 ? 2 : state == 4 ? 0 : 3;
-assign m1 = state == 1 ? 1 : state == 2 ? 0 : state == 3 ? 0 : state == 4 ? 3 : 0;
-assign m2 = state == 1 ? 0 : state == 2 ? 3 : state == 3 ? 0 : state == 4 ? 2 : state == 5 ? 2 : 0;
-assign ready = state == 0 ? 1 : 0; // ready é quando o circuito está pronto para fazer uma nova operação. ou seja, no estado 0
-assign valid = state == 7 ? 1 : 0; // valid é quando a saída do bloco operativo é uma resposta valida
+assign h = state == 1 ? 1 : state == 2 ? 1 : state == 3 ? 1 : state == 4 ? 1 : 0;
+assign LS = state == 2 ? 1 : state == 3 ? 0 : state == 4 ? 1 : state == 5 ? 0 : state == 6 ? 1 : state == 7 ? 0 : state == 8 ? 0 : 0;
+assign LH = state == 2 ? 0 : state == 3 ? 1 : state == 4 ? 0 : state == 5 ? 1 : 0;
+assign LX = state == 1 ? 1 : state == 2 ? 0 : state == 3 ? 0 : 0;
+assign m0 = state == 3 ? 1 : state == 4 ? 2 : state == 6 ? 3 : 0;
+assign m1 = state == 2 ? 1 : state == 3 ? 0 : state == 4 ? 0 : state == 5 ? 3 : state == 6 ? 3 : 0;  
+assign m2 = state == 2 ? 0 : state == 3 ? 2 : state == 4 ? 0 : state == 5 ? 2 : state == 6 ? 1 : 0;
+assign ready = state == 0 ? 1 : 0; 
+assign valid = state == 7 ? 1 : 0;
 
     always @(posedge clock or reset)
     begin
@@ -37,7 +37,6 @@ assign valid = state == 7 ? 1 : 0; // valid é quando a saída do bloco operativ
             else 
                 state <= state + 1;
         end
-        $display("state = %d", state);
     end
 
 endmodule
